@@ -1,22 +1,16 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
 {% block titulo %} Lista de libros {% endblock %}
 
 {% block contenido %}
-
 <div class="card">
     <div class="card-header">
-        Listar libros
+        <a class="btn btn-success" href="{% url 'crear' %}" role="button">Agregar nuevo Libro</a>
     </div>
     <div class="card-body">
         <h4 class="card-title">Libros</h4>
-        
-        <div
-            class="table-responsive"
-        >
-            <table
-                class="table table-primary"
-            >
+        <div class="table-responsive">
+            <table class="table table-primary">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -27,23 +21,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <tr class="">
-                        <td >1</td>
-                        <td>Django con python </td>
-                        <td>Imagen.jpg</td>
-                        <td>libro que habla sobre el framework dde Django</td>
-                        <td>Editar | borrar </td>
+                    {% for Libro in Libros %}
+                    <tr>
+                        <td>{{ Libro.id }}</td>
+                        <td>{{ Libro.titulo }}</td>
+                        <td><img src="{{ Libro.imagen.url }}" height="100" /></td>
+                        <td>{{ Libro.descripcion }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'editar' Libro.id %}" role="button">Editar</a>
+                            |
+                            <a class="btn btn-danger" href="{% url 'eliminar' Libro.id %}" role="button">Borrar</a>
+                        </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-        
-
-
     </div>
     <div class="card-footer text-muted">Footer</div>
 </div>
-
-
 {% endblock %}

@@ -1,0 +1,38 @@
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for campo in formulario %}
+        <div class="mb-3">
+            <label for="{{ campo.id_for_label }}" class="form-label">{{ campo.label }}</label>
+
+            {% if campo.field.widget.input_type == 'file' and campo.value %}
+                <br/>
+                <img 
+                    src="{{ campo.value.url }}" 
+                    width="100" 
+                    alt="{{ campo.label }}" 
+                />
+            {% endif %}
+
+            {{ campo }}  <!-- Renderiza el campo automáticamente -->
+            <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+        
+        <div class="col-12 help-text">{{ campo.errors }}</div>
+    {% endfor %}
+
+    <input
+        class="btn btn-success"
+        type="submit"
+        value="Enviar información"
+    />
+<a
+    name=""
+    id=""
+    class="btn btn-primary"
+    href="{% url 'libros' %}"
+    role="button"
+    >cancelar</a
+>
+
+
+</form>

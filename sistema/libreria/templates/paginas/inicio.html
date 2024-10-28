@@ -2,7 +2,7 @@
 
 {% block titulo %} Inicio {% endblock %}
 
-{% block contenido %}
+{% block contenido%}
 
 <div class="p-5 bg-light">
     <div class="container">
@@ -10,7 +10,8 @@
         <p class="lead">Empezar a ingresar libros </p>
         <hr class="my-2">
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="jumbo action link" role="button">Empezar</a>
+            <a class="btn btn-primary btn-lg" href="{% url 'libros' %}" role="button">Empezar</a>
+
         </p>
     </div>
 </div>
